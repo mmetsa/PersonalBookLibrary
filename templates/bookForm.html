@@ -1,0 +1,57 @@
+<div id="error-block" tpl-if="$errors">
+    <tpl tpl-foreach="$errors as $error">
+        <strong>{{ $error }}</strong><br>
+    </tpl>
+</div>
+
+<form id="add-list" method="post" action="?cmd=book-form-submit">
+    <input type="hidden" id="id" name="id" value="{{ $book->id }}">
+    <div class="label">
+        <label for="title">Pealkiri:</label>
+    </div>
+    <div class="input">
+        <input id="title" name="title" type="text" value="{{ $book->title }}">
+    </div>
+    <div class="label">
+        <label for="author1">Autor 1:</label>
+    </div>
+    <div class="input">
+        <select id="author1" name="author1">
+            <option value=""></option>
+            <tpl tpl-foreach="$authors as $author">
+                <option value='{{$author->id}}' tpl-selected="$author->id === $book->authors[0]->id">{{ $author->firstName}} {{$author->lastName}}</option>
+            </tpl>
+        </select>
+    </div>
+    <div class="label">
+        <label for="author2">Autor 2:</label>
+    </div>
+    <div class="input">
+        <select id="author2" name="author2">
+            <option value=""></option>
+            <tpl tpl-foreach="$authors as $author">
+                <option value='{{$author->id}}' tpl-selected="$author->id === $book->authors[1]->id">{{ $author->firstName}} {{$author->lastName}}</option>
+            </tpl>
+        </select>
+    </div>
+    <div class="label">Hinne: </div>
+    <div class="input">
+        <tpl tpl-foreach="range(1, 5) as $grade">
+            <label>
+                <input type="radio" name="grade" tpl-checked="$book->grade === $grade" value="{{ $grade }}"> {{ $grade }}
+            </label>
+        </tpl>
+    </div>
+    <div class="label">Loetud:</div>
+    <div class="input">
+        <label>
+            <input type="checkbox" name="isRead" tpl-checked="$book->isRead">
+        </label>
+    </div>
+    <div class="input" id="submit">
+        <tpl tpl-if="$cmd === 'book-edit'">
+            <input type="submit" name="deleteButton" id="deleteButton" value="Kustuta">
+        </tpl>
+        <input type="submit" name="submitButton" id="submitButton" value="Salvesta">
+    </div>
+</form>

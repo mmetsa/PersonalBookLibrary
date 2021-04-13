@@ -1,0 +1,25 @@
+<div id="grid-list">
+    <div id="message-block" tpl-if="$message">
+        <tpl>
+            <strong>{{ $message }}</strong><br>
+        </tpl>
+    </div>
+    <div class="grid-title">{{ $firstColTitle }}</div>
+    <div class="grid-title">{{ $secondColTitle }}</div>
+    <div class="grid-title">{{ $thirdColTitle }}</div>
+    <div id="title-item-split"></div>
+    <tpl tpl-foreach="$books as $book">
+        <div><a href='?cmd=book-edit&id={{$book->id}}'>{{ $book->title }}</a></div>
+        <div>
+        <tpl tpl-foreach="$book->authors as $author">
+                {{ $author->firstName }}
+                {{ $author->lastName}}<tpl tpl-if="!$last">,</tpl>
+        </tpl>
+        </div>
+        <div class="score-empty">
+            <tpl tpl-foreach="range(1, 5) as $grade">
+                <span tpl-class="score-filled if $book->grade >= $grade">&#9733;</span>
+            </tpl>
+        </div>
+    </tpl>
+</div>

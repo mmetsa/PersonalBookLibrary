@@ -1,0 +1,35 @@
+<div id="error-block" tpl-if="$errors">
+    <tpl tpl-foreach="$errors as $error">
+        <strong>{{ $error }}</strong><br>
+    </tpl>
+</div>
+
+<form id="add-list" method="post" action="?cmd=author-form-submit">
+    <input type="hidden" id="id" name="id" value="{{ $author->id }}">
+    <div class="label">
+        <label for="firstName">Eesnimi:</label>
+    </div>
+    <div class="input">
+        <input id="firstName" name="firstName" type="text" value="{{ $author->firstName }}">
+    </div>
+    <div class="label">
+        <label for="lastName">Perekonnanimi: </label>
+    </div>
+    <div class="input">
+        <input id="lastName" name="lastName" type="text" value="{{ $author->lastName }}">
+    </div>
+    <div class="label">Hinne: </div>
+    <div class="input">
+        <tpl tpl-foreach="range(1, 5) as $grade">
+            <label>
+                <input type="radio" name="grade" tpl-checked="$author->grade === $grade" value="{{ $grade }}"> {{ $grade }}
+            </label>
+        </tpl>
+    </div>
+    <div class="input" id="submit">
+        <tpl tpl-if="$cmd === 'author-edit'">
+            <input type="submit" name="deleteButton" id="deleteButton" value="Kustuta">
+        </tpl>
+        <input type="submit" name="submitButton" id="submitButton" value="Salvesta">
+    </div>
+</form>
