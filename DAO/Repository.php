@@ -2,9 +2,9 @@
 require_once "DTO/Book.php";
 require_once "DTO/Author.php";
 class Repository {
-    public string $username = 'mmetsalu';
+    public string $username = 'root';
     public string $password = 'fe57';
-    public string $address = 'mysql:host=db.mkalmo.xyz;dbname=mmetsalu';
+    public string $address = 'mysql:host=db;dbname=app';
     public PDO $connection;
 
     public function __construct() {

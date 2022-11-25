@@ -7,4 +7,4 @@ Responsive design, DAO/DTO models, using templates, SPA - everything was kept in
 
 # Usage
 
-To use this project, download it and put the contents inside a web server. You can then access the index.php file to use the Web application.
+To use this project, clone this repository and use docker compose to build and run it
